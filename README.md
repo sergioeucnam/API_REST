@@ -40,7 +40,10 @@ Para este proyecto se emula una DB en memoria
 
 Se desarrolla un servidor en Node/Express con las siguientes rutas:
 
-
+- [ ] __GET /__:
+  - Home con mensaje generico todo OK
+- [ ] __GET /users__:
+  - Obtener un listado de usuarios desde API externa `JSONPlaceholder`
 - [ ] __GET /api/players__:
   - Obtener un listado de los jugadores desde la DB.
 - [ ] __GET /api/players/{idPlayer}__:
