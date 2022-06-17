@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "f6fdecf8-f11a-4aa6-ae07-5b44cc4b8bb3",
+		"name": "RestApiRequest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21242382"
+	},
+	"item": [
+		{
+			"name": "Listar jugadores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"players"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "Listar todos los jugadores"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear jugador",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ronaldo\",\r\n    \"lastname\": \"Nazario\",\r\n    \"age\": \"45\",\r\n    \"team\": \"N/A\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar jugador",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/players/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"players",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar jugador",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Lionel\",\r\n    \"lastname\": \"Rooney\",\r\n    \"age\": \"69\",\r\n    \"team\": \"Riber\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/players/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"players",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener jugador",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/players/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"players",
+						"1"
+					]
+				},
+				"description": "Obtener jugador por ID"
+			},
+			"response": []
+		}
+	]
+}
