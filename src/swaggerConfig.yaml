@@ -1,0 +1,240 @@
+# version a utilizar
+openapi: 3.0.1
+
+# la propiedad info es necesaria en un archivo externo de documentación con swagger
+info:
+# title y description proporcionan informacion
+  title: API agencia de viajes MoonTravels
+  description: Esta API se encarga de manejar la información de la base de datos de la empresa
+  #se se suele dar una versión de la API que estoy documentando
+  version: 1.0.0 
+
+# servers proporciona las url base de la api
+servers:
+  - url: https://api.moontravesls/v1/clientes
+#los tags son como agrupaciones de los diferentes schemas que proporciona ésta API
+tags: 
+  - name: clientes
+    description: Este endpoint maneja toda la información relacionada con la información de los clientes.
+# paths de la api
+paths: 
+  /:
+    post:
+      tags:
+        - clientes
+      summary: Inserta la data de un nuevo cliente en la BD.
+      parameters:
+      - $ref: '#/components/parameters/token' 
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyClientesPost'
+        required: true
+      
+      #en las responses se comienza con el codigo numerico como una propiedad
+      responses:
+        200:
+          description: (OK) la información del cliente se ha guardado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoClientesPost'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+  
+  /{idCliente}:
+    get:
+    # especifico que pertenece a la tag(grupo) clientes
+      tags:
+        - clientes
+      summary: obtiene un cliente basado en su ID
+      parameters:
+      - $ref: '#/components/parameters/token'
+      - in: path #especifica que es un param de la URL
+        name: idCliente #mismo que arriba,en /{idCliente}
+        description: identificador del cliente a obtener
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: (Ok) la información del cliente se obtuvo correctamente
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoClientesGet'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /actualiza/{idCliente}:
+    put:
+      tags:
+      - clientes
+      summary: Actualiza la información de un cliente en la DB
+      parameters:
+      - $ref: '#/components/parameters/token'
+      - in : path
+        name: idCliente
+        description: identificador del cliente
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyClientesPut'
+        required: true
+      responses:
+        200:
+          description: (Ok) La información del cliente se actualizó correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoClientesPost'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+  /elimina/{idCliente}:
+    delete:
+      tags:
+      - clientes
+      summary: elimina a un cliente 
+      parameters:
+      - $ref: '#/components/parameters/token'
+      - in: path
+        name: idCliente
+        description: identificador del cliente
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: (Ok) La información del cliente se eliminó correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExitoClientesPost'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/ServerError'
+          
+                
+# puedo definir todo lo que voy a usar al final del archivo e ir tomando de aqui todo.Los schemas no son más que un conjunto de objetos que puedo mandar a referenciar cuando quiera          
+components:
+  responses:
+    Unauthorized:
+      description: (Unauthorized) No hay autorización suficiente para llamar al servicio
+    NotFound:
+      description: (NotFound) No se encontró la información
+    BadRequest:
+      description: (BadRequest) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+    ServerError:
+      description: (ServerError) Error en el servidor
+      
+  parameters:
+    token:
+      in: header
+      name: token
+      description: Token de autenticación
+      required: true
+      schema:
+        type: string
+  
+  schemas:
+    
+    BodyClientesPost:
+      type: object
+      properties:
+        primer_nombre:
+          type: string
+          description: Primer nombre del cliente
+        segundo_nombre:
+          type: string
+          description: Segundo nombre del cliente
+        apellido_materno:
+          type: string
+          description: Apellido materno del cliente
+        apellido_paterno:
+          type: string
+          description: Apellido paterno del cliente
+        correo_electronico:
+          type: string
+          description: email del cliente
+    
+    ExitoClientesPost:
+      type: object
+      properties:
+        respuesta:
+          type: integer
+          enum: [1]
+          description: Bandera que nos indica si la llamada al servicio fue exitosa
+        idCliente:
+          type: integer
+          enum: [222]
+          description: Id que le corresponde al cliente,ahora usuario
+    
+    ExitoClientesGet:
+      type: object
+      properties:
+        primer_nombre:
+          type: string
+          description: Primer nombre del cliente
+        segundo_nombre:
+          type: string
+          description: Segundo nombre del cliente
+        apellido_materno:
+          type: string
+          description: Apellido materno del cliente
+        apellido_paterno:
+          type: string
+          description: Apellido paterno del cliente
+        correo_electronico:
+          type: string
+          description: email del cliente
+    
+    BodyClientesPut:
+      type: object
+      properties:
+        primer_nombre:
+          type: string
+          description: Primer nombre del cliente
+        segundo_nombre:
+          type: string
+          description: Segundo nombre del cliente
+        apellido_materno:
+          type: string
+          description: Apellido materno del cliente
+        apellido_paterno:
+          type: string
+          description: Apellido paterno del cliente
+        correo_electronico:
+          type: string
+          description: email del cliente
+
+  
+  
