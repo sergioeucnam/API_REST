@@ -1,4 +1,5 @@
-const { Router } = require('express')
+const { Router } = require('express');
+const loadUsers = require('../controllers/users.controllers');
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -6,5 +7,6 @@ router.get('/', (req, res) => {
         "status": "todo OK mi rey"
     })
 })
+router.get('/users', loadUsers)
 
 module.exports = router;

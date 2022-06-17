@@ -137,6 +137,25 @@
 				"description": "Obtener jugador por ID"
 			},
 			"response": []
+		},
+		{
+			"name": "Listar Users desde API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
