@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1",
+        "name": "Lionel",
+        "lastname": "Messi",
+        "age": "34",
+        "team": "PSG"
+    },
+    {
+        "id": "2",
+        "name": "Cristiano",
+        "lastname": "Ronaldo",
+        "age": "36",
+        "team": "MAN"
+    },
+    {
+        "id": "3",
+        "name": "Kylian",
+        "lastname": "Mbappe",
+        "age": "23",
+        "team": "PSG"
+    }
+]
