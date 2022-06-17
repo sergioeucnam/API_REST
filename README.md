@@ -17,6 +17,10 @@
  3. El proyecto se ejecuta en el puerto 3000 por default
  4. Para correr el servidor ejecutar `npm start`
 
+ ## Postman
+ 1. Importar template de las rutas `RestApiRequest.postman_collection.json`
+ 2. Testear las rutas con los templates
+
 __IMPORTANTE:__ Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
 
 Actualmente las versiónes necesarias son:
